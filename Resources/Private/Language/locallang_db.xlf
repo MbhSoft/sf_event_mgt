@@ -75,6 +75,12 @@
 			<trans-unit id="tx_sfeventmgt_domain_model_event.related">
 				<source>Related events</source>
 			</trans-unit>
+			<trans-unit id="tx_sfeventmgt_domain_model_event.parent">
+				<source>Parent event</source>
+			</trans-unit>
+			<trans-unit id="tx_sfeventmgt_domain_model_event.children">
+				<source>Children events</source>
+			</trans-unit>
 			<trans-unit id="tx_sfeventmgt_domain_model_event.location">
 				<source>Location</source>
 			</trans-unit>

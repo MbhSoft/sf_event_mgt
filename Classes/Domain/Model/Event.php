@@ -122,6 +122,23 @@ class Event extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity
      */
     protected $category = null;
 
+
+    /**
+     * Parent
+     *
+     * @var \DERHANSEN\SfEventMgt\Domain\Model\Event
+     */
+    protected $parent;
+
+
+    /**
+     * Children
+     *
+     * @var \TYPO3\CMS\Extbase\Persistence\ObjectStorage<\DERHANSEN\SfEventMgt\Domain\Model\Event>
+     * @lazy
+     */
+    protected $children;
+
     /**
      * Related
      *
@@ -285,6 +302,7 @@ class Event extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity
     {
         $this->category = new \TYPO3\CMS\Extbase\Persistence\ObjectStorage();
         $this->related = new \TYPO3\CMS\Extbase\Persistence\ObjectStorage();
+        $this->children = new \TYPO3\CMS\Extbase\Persistence\ObjectStorage();
         $this->registration = new \TYPO3\CMS\Extbase\Persistence\ObjectStorage();
         $this->registrationWaitlist = new \TYPO3\CMS\Extbase\Persistence\ObjectStorage();
         $this->image = new \TYPO3\CMS\Extbase\Persistence\ObjectStorage();
@@ -598,6 +616,65 @@ class Event extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity
     public function setCategory(\TYPO3\CMS\Extbase\Persistence\ObjectStorage $category)
     {
         $this->category = $category;
+    }
+
+    /**
+     * @return Event
+     */
+    public function getParent()
+    {
+        return $this->parent;
+    }
+
+    /**
+     * @param Event $parent
+     */
+    public function setParent(\DERHANSEN\SfEventMgt\Domain\Model\Event $parent)
+    {
+        $this->parent = $parent;
+    }
+
+    /**
+     * Returns children
+     *
+     * @return \TYPO3\CMS\Extbase\Persistence\ObjectStorage
+     */
+    public function getChildren()
+    {
+        return $this->children;
+    }
+
+    /**
+     * Sets children
+     *
+     * @param \TYPO3\CMS\Extbase\Persistence\ObjectStorage $children
+     * @return void
+     */
+    public function setChildren($children)
+    {
+        $this->children = $children;
+    }
+
+    /**
+     * Adds a child
+     *
+     * @param Event $child
+     * @return void
+     */
+    public function addChild(\DERHANSEN\SfEventMgt\Domain\Model\Event $child)
+    {
+        $this->children->attach($child);
+    }
+
+    /**
+     * Removes a child
+     *
+     * @param Event $child
+     * @return void
+     */
+    public function removeChild(\DERHANSEN\SfEventMgt\Domain\Model\Event $child)
+    {
+        $this->children->detach($child);
     }
 
     /**

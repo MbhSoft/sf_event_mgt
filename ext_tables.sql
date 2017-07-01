@@ -41,6 +41,8 @@ CREATE TABLE tx_sfeventmgt_domain_model_event (
 	cancel_deadline int(11) DEFAULT '0' NOT NULL,
 	enable_autoconfirm tinyint(4) unsigned DEFAULT '0' NOT NULL,
 	unique_email_check tinyint(4) unsigned DEFAULT '0' NOT NULL,
+	parent int(11) unsigned DEFAULT '0' NOT NULL,
+	children int(11) unsigned DEFAULT '0' NOT NULL,
 
 	tstamp int(11) unsigned DEFAULT '0' NOT NULL,
 	crdate int(11) unsigned DEFAULT '0' NOT NULL,
@@ -62,6 +64,7 @@ CREATE TABLE tx_sfeventmgt_domain_model_event (
 	t3ver_move_id int(11) DEFAULT '0' NOT NULL,
 	t3_origuid int(11) DEFAULT '0' NOT NULL,
 	sorting int(11) DEFAULT '0' NOT NULL,
+	children_sorting int(11) DEFAULT '0' NOT NULL,
 
 	sys_language_uid int(11) DEFAULT '0' NOT NULL,
 	l10n_parent int(11) DEFAULT '0' NOT NULL,

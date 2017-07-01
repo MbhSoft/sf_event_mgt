@@ -50,7 +50,7 @@ return [
 				--palette--;;palettePrice, price_options, link, program,
 
 			--div--;LLL:EXT:sf_event_mgt/Resources/Private/Language/locallang_db.xlf:event.tabs.relations,
-				location, organisator, related,
+				location, organisator, related, parent, children,
 
 			--div--;LLL:EXT:sf_event_mgt/Resources/Private/Language/locallang_db.xlf:event.tabs.media,
 				image, files, youtube,additional_image,
@@ -632,5 +632,40 @@ return [
             ],
         ],
 
+        'parent' => [
+            'exclude' => 1,
+            'l10n_mode' => 'mergeIfNotBlank',
+            'label' => 'LLL:EXT:sf_event_mgt/Resources/Private/Language/locallang_db.xlf:tx_sfeventmgt_domain_model_event.parent',
+            'config' => [
+                'type' => 'select',
+                'renderType' => 'selectSingle',
+                'items' => [
+                    ['', 0],
+                ],
+                'foreign_table' => 'tx_sfeventmgt_domain_model_event',
+                'foreign_table_where' => ' AND tx_sfeventmgt_domain_model_event.uid != ###THIS_UID###',
+                'size' => 1,
+                'minitems' => 0,
+                'maxitems' => 1,
+            ]
+        ],
+
+        'children' => [
+            'exclude' => 1,
+            'displayCond' => 'FIELD:parent:=:0',
+            'l10n_mode' => 'mergeIfNotBlank',
+            'label' => 'LLL:EXT:sf_event_mgt/Resources/Private/Language/locallang_db.xlf:tx_sfeventmgt_domain_model_event.children',
+            'config' => [
+                'type' => 'inline',
+                'foreign_table' => 'tx_sfeventmgt_domain_model_event',
+                'foreign_field' => 'parent',
+                'foreign_sortby' => 'children_sorting',
+                'maxitems' => 10,
+                'appearance' => [
+                    'collapseAll' => true,
+                    'expandSingle' => true,
+                ],
+            ]
+        ],
     ],
 ];
